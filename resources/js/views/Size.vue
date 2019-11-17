@@ -89,7 +89,7 @@
 
 <script>
   export default {
-    name: 'items',
+    name: 'size',
     props: {
     },
     data(){
@@ -182,6 +182,9 @@
             Fire.$on('dataLoaded', () => {
                 this.loadItems();
             });
+        },
+        mounted(){
+            funcs.checkPerm(Auth, rootUrl)
         }
   }
 </script>

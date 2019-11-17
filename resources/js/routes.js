@@ -6,6 +6,9 @@ import User from './views/User'
 import Resturant from './views/Resturant'
 import Item from './views/Item'
 import Size from './views/Size'
+import Suggestion from './views/Suggestion'
+import Decision from './views/Decision'
+import Order from './views/Order'
 import NotFound from './views/NotFound'
 import common from '@/js/utils/common'
 
@@ -19,6 +22,21 @@ const router = new VueRouter({
             path: rootUrl + 'home',
             name: 'home',
             component: Home
+        },
+        {
+            path: rootUrl + 'orders',
+            name: 'order',
+            component: Order
+        },
+        {
+            path: rootUrl + 'decisions',
+            name: 'decision',
+            component: Decision
+        },
+        {
+            path: rootUrl + 'suggestions',
+            name: 'suggestion',
+            component: Suggestion
         },
         {
             path: rootUrl + 'sizes',

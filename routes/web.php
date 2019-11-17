@@ -18,6 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function(){
+    Route::get('api/auth', 'HomeController@auth')->name('auth');
+    Route::get('logout', 'HomeController@logout')->name('logout');
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::group(['namespace' => 'Api', 'prefix' => 'api'], function(){
@@ -26,12 +28,22 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/get-resturants', 'ResturantController@getResturants');
         Route::resource('/items', 'ItemController');
         Route::resource('/items-sizes', 'SizeController');
+
+        Route::resource('/suggestions', 'SuggestionController');
+        Route::get('my-suggestions', 'SuggestionController@getTodaySuggestion')->name('my-suggestions');
+        Route::post('suggestions/add/{suggestion}', 'SuggestionController@plusOne')->name('plusOne');
+
+        Route::resource('/orders', 'OrderController');
+
+
+        Route::get('decisions', 'DecisionController@index')->name('decisions.index');
+        Route::post('decisions', 'DecisionController@makeDecision')->name('decisions.make');
+        Route::get('decisions/check/made', 'DecisionController@isDecisionMade')->name('decisions.isMade');
+        Route::post('decisions/make/order', 'DecisionController@makeOrder')->name('decisions.makeOrder');
+        Route::delete('decisions/{decisions}', 'DecisionController@destroy')->name('decisions.destroy');
     });
 
-    Route::get('{path}',"HomeController@index")->where( 'path', '([A-z\d-\/_.]+)?' );
+    Route::get('{path}','HomeController@index')->where( 'path', '([A-z]+)?' );
 });
-
-
-Auth::routes();
 
 

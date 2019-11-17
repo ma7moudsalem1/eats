@@ -25,4 +25,15 @@ class HomeController extends Controller
     {
         return view('index');
     }
+
+    public function auth()
+    {
+        return $this->successResponse('auth', auth()->user());
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+        return redirect(route('home'));
+    }
 }

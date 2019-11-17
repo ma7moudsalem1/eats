@@ -16,7 +16,7 @@
         </div>
         <!-- /.content-wrapper -->
 
-        <footerLayout />
+        <!-- <footerLayout /> -->
    </div>
 </template>
 

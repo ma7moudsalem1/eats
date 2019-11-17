@@ -18,7 +18,7 @@ trait JsonResponse {
         return response($return, $status);
     }
 
-    public function failResponse($responseName, $response, $message, $errors = [], $status = 200)
+    public function failResponse($responseName, $response, $message = '', $errors = [], $status = 200)
     {
         $response = empty($response) || $response == [] ? null : $response;
         $return = [

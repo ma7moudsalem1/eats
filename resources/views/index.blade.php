@@ -29,7 +29,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- REQUIRED SCRIPTS -->
 
 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
+    @csrf
 </form>
 </div>
 <!-- ./wrapper -->
