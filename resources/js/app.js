@@ -14,6 +14,7 @@ import common from '@/js/utils/common'
 window.Vue = require('vue');
 window.Swal = Swal
 
+window.funcs = common;
 const toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -26,13 +27,18 @@ window.Fire = new Vue();
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
 
-lsSync.syncData()
+lsSync.syncData();
+
+
 
 window.onload = function () {
-const app = new Vue ({
-    el: '#app',
-    store,
-    router: Routes,
-    render: h => h(App)
-})
+    Vue.prototype.$http.get('/auth').then(response => {
+        window.Auth = response.data.auth;
+        const app = new Vue ({
+            el: '#app',
+            store,
+            router: Routes,
+            render: h => h(App)
+        })
+    });
 }

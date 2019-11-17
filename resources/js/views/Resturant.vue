@@ -199,6 +199,9 @@
             Fire.$on('dataLoaded', () => {
                 this.loadResturants();
             });
+        },
+        mounted(){
+            funcs.checkPerm(Auth, rootUrl)
         }
   }
 </script>

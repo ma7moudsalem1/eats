@@ -219,6 +219,9 @@
             Fire.$on('dataLoaded', () => {
                 this.loadItems();
             });
+        },
+        mounted(){
+            funcs.checkPerm(Auth, rootUrl)
         }
   }
 </script>
