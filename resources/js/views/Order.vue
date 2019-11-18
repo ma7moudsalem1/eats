@@ -16,17 +16,19 @@
                   <th>Resturant Name</th>
                   <th>Delivery Price</th>
                   <th>Status</th>
+                  <th>Time</th>
                   <th v-if="auth.isAdmin">Action</th>
                 </tr>
                 </thead>
                 <tbody>
                     <tr v-for="order in orders.data" :key="order.id">
                         <td>{{order.resturant.name}}</td>
-                        <td>{{order.delivery_price}}</td>
+                        <td>{{order.delivery_price}} EGP</td>
                         <td>{{order.status ? 'Active' : 'Not Active'}}</td>
+                        <td>{{order.created_at}}</td>
                         <td v-if="auth.isAdmin">
 
-                            <router-link :to="url('order-items?or=' + order.id)" class="btn btn-info" title="order items">
+                            <router-link :to="url('orderitems?or=' + order.id)" class="btn btn-info" title="order items">
                                 <i class="fa fa-bars"></i>
                             </router-link>
 
@@ -165,7 +167,6 @@
         },
         mounted(){
             this.auth = Auth;
-            funcs.checkPerm(Auth, rootUrl)
         }
   }
 </script>
