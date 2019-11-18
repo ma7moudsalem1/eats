@@ -9,6 +9,7 @@ import Size from './views/Size'
 import Suggestion from './views/Suggestion'
 import Decision from './views/Decision'
 import Order from './views/Order'
+import OrderItem from './views/OrderItem'
 import NotFound from './views/NotFound'
 import common from '@/js/utils/common'
 
@@ -22,6 +23,11 @@ const router = new VueRouter({
             path: rootUrl + 'home',
             name: 'home',
             component: Home
+        },
+        {
+            path: rootUrl + 'orderitems',
+            name: 'order-item',
+            component: OrderItem
         },
         {
             path: rootUrl + 'orders',

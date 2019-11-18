@@ -34,6 +34,9 @@ Route::group(['middleware' => ['auth']], function(){
         Route::post('suggestions/add/{suggestion}', 'SuggestionController@plusOne')->name('plusOne');
 
         Route::resource('/orders', 'OrderController');
+        Route::resource('/order-items', 'OrderItemController');
+        Route::get('/order-items/get/items', 'OrderItemController@getItems');
+        Route::get('/order-items/get/total', 'OrderItemController@getTotal');
 
 
         Route::get('decisions', 'DecisionController@index')->name('decisions.index');
