@@ -160,15 +160,23 @@
             createItem(){
                 this.form.order_id = this.order_id;
                 this.$http.post("/order-items", this.form).then(response => {
-                    this.form = {};
-                    Fire.$emit('dataLoaded');
-                    $('#addNewModal').modal('hide');
+                    if(response.data.result.success){
+                        this.form = {};
+                        Fire.$emit('dataLoaded');
+                        $('#addNewModal').modal('hide');
 
-                    toast.fire({
-                        type: 'success',
-                        title: 'Item created successfully'
-                    });
+                        toast.fire({
+                            type: 'success',
+                            title: 'Item created successfully'
+                        });
 
+                    }else{
+                         toast.fire({
+                            type: 'error',
+                            title: response.data.result.message
+                        });
+                    }
+                    
                 });
 
             },

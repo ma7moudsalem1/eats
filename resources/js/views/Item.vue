@@ -15,6 +15,7 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+                  <th>Image</th>
                   <th>Name</th>
                   <th>Resturant</th>
                   <th>Action</th>
@@ -22,6 +23,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="item in items.data" :key="item.id">
+                        <td><img :src="item.photo" alt="item.name" width="50px" height="50px" class="img-circle text-center" /></td>
                         <td>{{item.name}}</td>
                         <td>{{item.resturant.name}}</td>
                         <td>
@@ -77,7 +79,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="file" @change="onImageChange" class="form-control">
+                                <input type="text" v-model="form.image" class="form-control">
                             </div>
                             
                             <div class="form-group">

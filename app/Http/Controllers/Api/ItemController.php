@@ -29,7 +29,8 @@ class ItemController extends Controller
         $data = $this->validate($request, [
             'name'              => 'required|string|min:2|max:191',
             'details'           => 'required|string|max:450',
-            'resturant_id'      => 'required|integer'
+            'resturant_id'      => 'required|integer',
+            'image'             => 'nullable|url',
         ]);
         $item = $items->create($data);
         return $this->successResponse('items', $item);
@@ -59,7 +60,8 @@ class ItemController extends Controller
         $data = $this->validate($request, [
             'name'              => 'required|string|min:2|max:191',
             'details'           => 'required|string|max:450',
-            'resturant_id'      => 'required|integer'
+            'resturant_id'      => 'required|integer',
+            'image'             => 'nullable|url',
         ]);
         $item->update($data);
         return $this->successResponse('items', $item);

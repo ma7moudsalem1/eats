@@ -2,7 +2,7 @@
 <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <router-link to="/dashboard" class="brand-link">
+        <router-link :to="url('home')" class="brand-link">
             <!-- <img src="/img/logo.png" alt="Vue System Logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8"> -->
             <span class="brand-text font-weight-light">Ultimate Eats</span>
@@ -16,7 +16,7 @@
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/600px-Circle-icons-profile.svg.png" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <router-link to="/dashboard" class="d-block">{{ auth.name }}</router-link>
+                    <router-link :to="url('home')" class="d-block">{{ auth.name }}</router-link>
                 </div>
             </div>
 
@@ -27,7 +27,7 @@
                          with font-awesome or any other icon font library -->
 
                     <li class="nav-item">
-                        <router-link :to="url('')" class="nav-link">
+                        <router-link :to="url('home')" class="nav-link">
                             <i class="nav-icon fa fa-home"></i>
                             <p>
                                 Home
@@ -58,21 +58,21 @@
 
                     <li class="nav-item">
                         <router-link :to="url('suggestions')" class="nav-link">
-                            <i class="fa fa-bars nav-icon"></i>
+                            <i class="fa fa-file-alt nav-icon"></i>
                             <p>Suggestions</p>
                         </router-link>
                     </li>
 
                      <li class="nav-item">
                         <router-link :to="url('decisions')" class="nav-link">
-                            <i class="fa fa-bars nav-icon"></i>
+                            <i class="fa fa-legal nav-icon"></i>
                             <p>Decisions</p>
                         </router-link>
                     </li>
 
                     <li class="nav-item">
                         <router-link :to="url('orders')" class="nav-link">
-                            <i class="fa fa-bars nav-icon"></i>
+                            <i class="fa fa-shopping-cart nav-icon"></i>
                             <p>Order</p>
                         </router-link>
                     </li>

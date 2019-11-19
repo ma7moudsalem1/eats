@@ -36,6 +36,10 @@ class OrderItemController extends Controller
             'qty'               => 'required|integer',
             'order_id'          => 'required|integer',
         ]);
+        $order = Order::findOrFail($request->order_id);
+        if($order->status){
+            return $this->failResponse('orders', [], 'you can not add any more in this order.');
+        }
         $size = ItemSize::findOrFail($data['size_id']);
         $data['size_name'] = $size->name;
         $data['item_price'] = $size->item_price;

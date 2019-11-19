@@ -85,7 +85,7 @@ class ResturantController extends Controller
 
     public function getResturants(Resturant $resturants)
     {
-        $resturants = $resturants->pluck('name', 'id');
+        $resturants = $resturants->whereStatus(1)->pluck('name', 'id');
         return $this->successResponse('resturants', $resturants);
     }
 }
