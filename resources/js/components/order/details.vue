@@ -14,6 +14,9 @@
                             <a  class="btn btn-info" title="info">
                                 <i class="fa fa-book"></i>
                             </a>
+                              <router-link :to="url('userOrders?or=' + order.order_id + '&u='+order.user.id)" class="btn btn-info" title="order items">
+                                <i class="fa fa-bars"></i>
+                            </router-link>
                         </td>
                     </tr>
                 </tbody>
@@ -43,6 +46,10 @@
         }
     },
       methods: {
+          url(path){
+                let url = document.head.querySelector('meta[name="root-url"]').content
+                return url + path;
+            },
             getResults(page = 1) {
                 this.$http.get('/order-items-group?order='+ this.order_id +'page=' + page).then(response => {
                     this.orders = response.data.orders;

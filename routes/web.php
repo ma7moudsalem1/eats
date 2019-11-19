@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth']], function(){
         Route::resource('/order-items', 'OrderItemController');
 
         Route::get('/order-items-group', 'OrderItemGroupController@index');
+        Route::get('/order-items-group/get/user', 'OrderItemGroupController@getUserOrder');
 
         Route::get('/order-items/get/items', 'OrderItemController@getItems');
         Route::get('/order-items/get/total', 'OrderItemController@getTotal');

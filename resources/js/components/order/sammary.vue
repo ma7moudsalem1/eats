@@ -4,27 +4,27 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th v-if="auth.isAdmin"></th>
-                  <th>Resturant</th>
-                  <th>User</th>
+                  <th>Qty</th>
+                  <th>Item</th>
+                  <th>Size</th>
                 </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="suggestion in suggestions" :key="suggestion.id">
-                        <td v-if="auth.isAdmin"><input type="checkbox" :value="suggestion.resturant.id" v-model="decisions"></td>
-                        <td>{{suggestion.resturant.name}}</td>
-                        <td>{{suggestion.total}}</td>
+                    <tr v-for="order in orders" :key="order.id">
+                        <td >{{ order.qty_total }}</td>
+                        <td>{{order.item_name}}</td>
+                        <td>{{order.size_name}}</td>
                     </tr>
                 </tbody>
               </table>
-              <button class="btn btn-success mt-5" @click.prevent="makeDecision()" v-if="decisions.length && auth.isAdmin">Make decision</button>
+             
             </div>
            
 </template>
 
 <script>
   export default {
-    name: 'sammary',
+    name: 'order-sammary',
     props: {
       newAdd:{
             type: Boolean,
@@ -41,36 +41,23 @@
     },
     data(){
         return {
-            suggestions: {},
-            decisions: []
+            orders: {},
+            order_id: ''
         }
     },
       methods: {
-            loadSuggestions(){
-                this.$http.get("/suggestions?display=s").then(response => {
-                    this.suggestions = response.data.suggestions;
+            loadOrder(){
+                this.$http.get("/order-items-group?order="+ this.order_id+ "&display=s").then(response => {
+                    this.orders = response.data.orders;
                 }); 
             },
-            refreshData(){
-                this.loadSuggestions();
-            },
-            makeDecision(){
-                this.$http.post("/decisions", {'resturants': this.decisions}).then(response => {
-                    window.location.replace(rootUrl + 'decisions');
-                });
-            }
         }
         ,
         created() {
-            this.loadSuggestions();
+            this.order_id = this.$route.query.or;
+            this.loadOrder();
         },
          watch:{
-            newAdd(){
-                if(this.newAdd){
-                    this.refreshData();
-                    this.newAdd = false
-                }
-            }
         }
   }
 </script>
