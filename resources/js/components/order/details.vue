@@ -11,9 +11,6 @@
                     <tr v-for="order in orders.data" :key="order.id">
                         <td>{{order.user.name}}</td>
                         <td>
-                            <a  class="btn btn-info" title="info">
-                                <i class="fa fa-book"></i>
-                            </a>
                               <router-link :to="url('userOrders?or=' + order.order_id + '&u='+order.user.id)" class="btn btn-info" title="order items">
                                 <i class="fa fa-bars"></i>
                             </router-link>

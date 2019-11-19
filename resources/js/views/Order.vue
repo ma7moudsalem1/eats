@@ -32,6 +32,10 @@
                                 <i class="fa fa-bars"></i>
                             </router-link>
 
+                             <router-link v-if="auth.isAdmin" :to="url('ordergroup?or=' + order.id)" class="btn btn-info" title="order group">
+                                <i class="fa fa-bars"></i>
+                            </router-link>
+
                             <a v-if="auth.isAdmin" href="#" class="btn btn-primary" @click.prevent="editModal(order)">
                                 <i class="fa fa-edit"></i>
                             </a>
