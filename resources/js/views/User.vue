@@ -140,6 +140,7 @@
                 this.$http.post("/users", this.form).then(response => {
                     this.form = {};
                     Fire.$emit('dataLoaded');
+                    $('#addNewModal').modal('hide');
                       toast({
                         type: 'success',
                         title: 'User created successfully'
@@ -151,6 +152,7 @@
                 this.$http.patch('/users/'+this.form.id, this.form).then(response => {
                     this.form = {};
                     //Fire.$emit('dataLoaded');
+                    $('#addNewModal').modal('hide');
                       toast({
                         type: 'success',
                         title: 'User Update successfully'

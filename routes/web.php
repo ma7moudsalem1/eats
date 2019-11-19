@@ -43,6 +43,8 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/order-items/get/total', 'OrderItemController@getTotal');
 
 
+        Route::get('home', 'HomeController@index')->name('home.index');
+
         Route::get('decisions', 'DecisionController@index')->name('decisions.index');
         Route::post('decisions', 'DecisionController@makeDecision')->name('decisions.make');
         Route::get('decisions/check/made', 'DecisionController@isDecisionMade')->name('decisions.isMade');
