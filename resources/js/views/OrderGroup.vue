@@ -6,9 +6,6 @@
             <div class="card-header">
               <h3 class="card-title">Order Group ({{ details ? 'in details' : 'Sammary' }})</h3>
                 <div class="card-tools">
-                    <button class="btn btn-success" @click="newModal">
-                        <i class="fa fa-plus"></i>
-                    </button>
                     <button @click="details = !details" class="btn btn-success">{{ details ? 'Sammary' : 'Details' }}</button>
                 </div>
             </div>
@@ -50,6 +47,7 @@
         },
         mounted(){
             this.auth = Auth;
+            funcs.checkPerm(Auth, rootUrl)
         }
   }
 </script>

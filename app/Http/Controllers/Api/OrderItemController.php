@@ -39,6 +39,7 @@ class OrderItemController extends Controller
         $size = ItemSize::findOrFail($data['size_id']);
         $data['size_name'] = $size->name;
         $data['item_price'] = $size->item_price;
+        $data['item_name'] = @$size->item->name;
         unset($data['size_id']);
         $data['user_id'] = auth()->id();
         $item = $OrderItem->create($data);

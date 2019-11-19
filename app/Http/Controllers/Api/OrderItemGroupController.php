@@ -20,9 +20,9 @@ class OrderItemGroupController extends Controller
     public function index(OrderItem $orderItem)
     {
         if(request()->display == 's'){
-            $orders = $orderItem->with('item')->where('order_id', request()->order)->groupBy('item_id', 'size_name')->selectRaw('count(*) as total, sum(qty) as qty_total, resturant_id')->get();
+            $orders = $orderItem->where('order_id', request()->order)->groupBy('item_id', 'size_name')->selectRaw('count(*) as total, sum(qty) as qty_total, size_name, item_name')->with('item')->get();
         }else{
-            $orders = $orderItem->groupBy('user_id')->select('*')->where('order_id', request()->order)->latest()->paginate(15);
+            $orders = $orderItem->with('user')->groupBy('user_id')->select('*')->where('order_id', request()->order)->latest()->paginate(20);
         }
         return $this->successResponse('orders', $orders);
     }
@@ -101,6 +101,22 @@ class OrderItemGroupController extends Controller
         }
         $total += ($order->delivery_price / $orderItems);
         return $this->successResponse('items', $total);
+    }
+    
+    public function getUserOrder(Request $request)
+    {
+        $order = Order::findOrFail($request->order);
+        $orderItems = OrderItem::where('order_id', $order->id)->groupBy('user_id')->selectRaw('count(*) as total, user_id')->get()->count();
+        $items = OrderItem::where('user_id', $request->user)->where('order_id', $order->id)->get();
+        if(!$items || !$orderItems){
+            return $this->successResponse('items', ['price' => 0, 'items' => []]);
+        }
+        $total = 0;
+        foreach($items as $item){
+            $total += ($item->item_price * $item->qty);
+        }
+        $total += ($order->delivery_price / $orderItems);
+        return $this->successResponse('items', ['price' => $total, 'items' => $items]);
     }
 
     /**
