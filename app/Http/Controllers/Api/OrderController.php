@@ -16,7 +16,7 @@ class OrderController extends Controller
      */
     public function index(Order $orders)
     {
-        return $this->successResponse('orders', $orders->whereDate('created_at', Carbon::today())->latest()->paginate(15));
+        return $this->successResponse('orders', $orders->latest()->paginate(20));
     }
 
     /**

@@ -12,4 +12,9 @@ class Item extends Model
     {
         return $this->belongsTo('App\Models\Resturant');
     }
+
+    public function sizes()
+    {
+        return $this->hasMany('App\Models\ItemSize');
+    }
 }
