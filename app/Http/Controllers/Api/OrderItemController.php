@@ -87,8 +87,8 @@ class OrderItemController extends Controller
         $order = Order::findOrFail($request->order);
         $orderItems = OrderItem::where('order_id', $order->id)->groupBy('user_id')->selectRaw('count(*) as total, user_id')->get()->count();
         $items = OrderItem::where('user_id', auth()->id())->where('order_id', $order->id)->get();
-        if(!$items){
-            return $this->successResponse('items', 0);
+        if(!$items || !$orderItems){
+            return $this->successResponse('items', '0');
         }
         $total = 0;
         foreach($items as $item){
