@@ -161,7 +161,7 @@
                     }).then((result) => {
                         if(result.value){
 
-                            this.$http.delete('/items/' + id).then(response => {
+                            this.$http.delete('/items-sizes/' + id).then(response => {
                                 Fire.$emit('dataLoaded');
                                 Swal.fire(
                                     'Deleted!',
