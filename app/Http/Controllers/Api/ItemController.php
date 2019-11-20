@@ -28,7 +28,7 @@ class ItemController extends Controller
     {
         $data = $this->validate($request, [
             'name'              => 'required|string|min:2|max:191',
-            'details'           => 'required|string|max:450',
+            'details'           => 'nullable|string|max:450',
             'resturant_id'      => 'required|integer',
             'image'             => 'nullable|url',
         ]);
@@ -59,7 +59,7 @@ class ItemController extends Controller
         $item = $items->findOrFail($id);
         $data = $this->validate($request, [
             'name'              => 'required|string|min:2|max:191',
-            'details'           => 'required|string|max:450',
+            'details'           => 'nullable|string|max:450',
             'resturant_id'      => 'required|integer',
             'image'             => 'nullable|url',
         ]);

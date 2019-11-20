@@ -79,7 +79,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="text" v-model="form.image" class="form-control">
+                                <input type="text" v-model="form.image" class="form-control" placeholder="Image link (optional)">
                             </div>
                             
                             <div class="form-group">

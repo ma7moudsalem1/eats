@@ -29,7 +29,7 @@ class ResturantController extends Controller
         $data = $this->validate($request, [
             'name'              => 'required|string|min:2|max:191',
             'delivery_price'    => 'required|numeric',
-            'details'           => 'required|string|max:450',
+            'details'           => 'nullable|string|max:450',
             'menu'              => 'nullable',
             'status'            => 'required|boolean'
         ]);
@@ -61,7 +61,7 @@ class ResturantController extends Controller
         $data      = $this->validate($request, [
             'name'              => 'required|string|min:2|max:191',
             'delivery_price'    => 'required|numeric',
-            'details'           => 'required|string|max:450',
+            'details'           => 'nullable|string|max:450',
             'menu'              => 'nullable',
             'status'            => 'required|boolean'
         ]);
